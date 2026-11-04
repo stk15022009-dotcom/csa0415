@@ -1,0 +1,29 @@
+#include <stdio.h>
+#include <pthread.h>
+
+void *display1()
+{
+    printf("Thread 1 is running\n");
+    return NULL;
+}
+
+void *display2()
+{
+    printf("Thread 2 is running\n");
+    return NULL;
+}
+
+int main()
+{
+    pthread_t t1, t2;
+
+    pthread_create(&t1, NULL, display1, NULL);
+    pthread_create(&t2, NULL, display2, NULL);
+
+    pthread_join(t1, NULL);
+    pthread_join(t2, NULL);
+
+    printf("Main thread completed\n");
+
+    return 0;
+}
