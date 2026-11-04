@@ -1,0 +1,58 @@
+#include <stdio.h>
+
+struct employee
+{
+    int id;
+    char name[20];
+    float salary;
+};
+
+int main()
+{
+    FILE *fp;
+    struct employee e;
+    int n, i, search;
+
+    fp = fopen("employee.dat", "wb");
+
+    printf("Enter number of employees: ");
+    scanf("%d", &n);
+
+    for(i = 0; i < n; i++)
+    {
+        printf("\nEnter ID, Name and Salary:\n");
+        scanf("%d %s %f", &e.id, e.name, &e.salary);
+
+        fwrite(&e, sizeof(e), 1, fp);
+    }
+
+    fclose(fp);
+
+    fp = fopen("employee.dat", "rb");
+
+    printf("\nEnter employee ID to search: ");
+    scanf("%d", &search);
+
+    for(i = 0; i < n; i++)
+    {
+        fseek(fp, i * sizeof(e), SEEK_SET);
+
+        fread(&e, sizeof(e), 1, fp);
+
+        if(e.id == search)
+        {
+            printf("\nEmployee Found\n");
+            printf("ID: %d\n", e.id);
+            printf("Name: %s\n", e.name);
+            printf("Salary: %.2f\n", e.salary);
+            break;
+        }
+    }
+
+    if(i == n)
+        printf("Employee Not Found");
+
+    fclose(fp);
+
+    return 0;
+}
