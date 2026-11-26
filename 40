@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include <sys/stat.h>
+
+int main()
+{
+    FILE *fp;
+
+    fp=fopen("file.txt","w");
+
+    if(fp==NULL)
+    {
+        printf("File error");
+        return 1;
+    }
+
+    fprintf(fp,"Permission example");
+    fclose(fp);
+
+    if(chmod("file.txt",0644)==0)
+    {
+        printf("Permission changed\n");
+        printf("Owner: Read and Write\n");
+        printf("Group: Read Only\n");
+        printf("Others: Read Only\n");
+    }
+    else
+        printf("Permission failed");
+
+    return 0;
+}
