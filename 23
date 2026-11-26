@@ -1,0 +1,30 @@
+#include<stdio.h>
+int main()
+{
+    int b[10],p[10],i,j,n,m;
+    printf("Enter blocks: ");
+    scanf("%d",&n);
+    for(i=0;i<n;i++)
+        scanf("%d",&b[i]);
+
+    printf("Enter processes: ");
+    scanf("%d",&m);
+    for(i=0;i<m;i++)
+        scanf("%d",&p[i]);
+
+    for(i=0;i<m;i++)
+    {
+        for(j=0;j<n;j++)
+        {
+            if(b[j]>=p[i])
+            {
+                printf("P%d allocated\n",i+1);
+                b[j]-=p[i];
+                break;
+            }
+        }
+        if(j==n)
+            printf("P%d not allocated\n",i+1);
+    }
+    return 0;
+}
