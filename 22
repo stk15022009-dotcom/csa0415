@@ -1,0 +1,32 @@
+#include<stdio.h>
+int main()
+{
+    int b[10],p[10],i,j,n,m,best;
+    printf("Enter blocks: ");
+    scanf("%d",&n);
+    for(i=0;i<n;i++)
+        scanf("%d",&b[i]);
+
+    printf("Enter processes: ");
+    scanf("%d",&m);
+    for(i=0;i<m;i++)
+        scanf("%d",&p[i]);
+
+    for(i=0;i<m;i++)
+    {
+        best=-1;
+        for(j=0;j<n;j++)
+            if(b[j]>=p[i])
+                if(best==-1 || b[j]<b[best])
+                    best=j;
+
+        if(best!=-1)
+        {
+            printf("P%d allocated\n",i+1);
+            b[best]-=p[i];
+        }
+        else
+            printf("P%d not allocated\n",i+1);
+    }
+    return 0;
+}
