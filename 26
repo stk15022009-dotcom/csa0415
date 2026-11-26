@@ -1,0 +1,24 @@
+#include <stdio.h>
+int main()
+{
+    FILE *fp;
+    char text[100];
+
+    fp=fopen("data.txt","w");
+    fprintf(fp,"Operating System Lab");
+    fclose(fp);
+    printf("File created\n");
+
+    fp=fopen("data.txt","r");
+    fgets(text,100,fp);
+    printf("Content: %s\n",text);
+    fclose(fp);
+
+    rename("data.txt","newdata.txt");
+    printf("File renamed\n");
+
+    remove("newdata.txt");
+    printf("File deleted\n");
+
+    return 0;
+}
